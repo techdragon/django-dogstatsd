@@ -1,0 +1,16 @@
+[paths]
+source =
+   src/django_dogstatsd
+   */site-packages/django_dogstatsd
+
+[run]
+branch = true
+source =
+    django_dogstatsd
+    tests
+parallel = true
+
+[report]
+show_missing = true
+precision = 2
+omit = *migrations*

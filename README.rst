@@ -1,54 +1,113 @@
-Introduction
+========
+Overview
+========
+
+.. start-badges
+
+.. list-table::
+    :stub-columns: 1
+
+    * - docs
+      - |docs|
+    * - tests
+      - | |travis| |appveyor| |requires|
+        | |codecov|
+        | |landscape| |scrutinizer| |codeclimate|
+    * - package
+      - | |version| |wheel| |supported-versions| |supported-implementations|
+        | |commits-since|
+
+.. |docs| image:: https://readthedocs.org/projects/django-dogstatsd/badge/?style=flat
+    :target: https://readthedocs.org/projects/django-dogstatsd
+    :alt: Documentation Status
+
+.. |travis| image:: https://travis-ci.org/techdragon/django-dogstatsd.svg?branch=master
+    :alt: Travis-CI Build Status
+    :target: https://travis-ci.org/techdragon/django-dogstatsd
+
+.. |appveyor| image:: https://ci.appveyor.com/api/projects/status/github/techdragon/django-dogstatsd?branch=master&svg=true
+    :alt: AppVeyor Build Status
+    :target: https://ci.appveyor.com/project/techdragon/django-dogstatsd
+
+.. |requires| image:: https://requires.io/github/techdragon/django-dogstatsd/requirements.svg?branch=master
+    :alt: Requirements Status
+    :target: https://requires.io/github/techdragon/django-dogstatsd/requirements/?branch=master
+
+.. |codecov| image:: https://codecov.io/github/techdragon/django-dogstatsd/coverage.svg?branch=master
+    :alt: Coverage Status
+    :target: https://codecov.io/github/techdragon/django-dogstatsd
+
+.. |landscape| image:: https://landscape.io/github/techdragon/django-dogstatsd/master/landscape.svg?style=flat
+    :target: https://landscape.io/github/techdragon/django-dogstatsd/master
+    :alt: Code Quality Status
+
+.. |codeclimate| image:: https://codeclimate.com/github/techdragon/django-dogstatsd/badges/gpa.svg
+   :target: https://codeclimate.com/github/techdragon/django-dogstatsd
+   :alt: CodeClimate Quality Status
+
+.. |version| image:: https://img.shields.io/pypi/v/django-dogstatsd.svg
+    :alt: PyPI Package latest release
+    :target: https://pypi.python.org/pypi/django-dogstatsd
+
+.. |commits-since| image:: https://img.shields.io/github/commits-since/techdragon/django-dogstatsd/v0.1.0.svg
+    :alt: Commits since latest release
+    :target: https://github.com/techdragon/django-dogstatsd/compare/v0.1.0...master
+
+.. |wheel| image:: https://img.shields.io/pypi/wheel/django-dogstatsd.svg
+    :alt: PyPI Wheel
+    :target: https://pypi.python.org/pypi/django-dogstatsd
+
+.. |supported-versions| image:: https://img.shields.io/pypi/pyversions/django-dogstatsd.svg
+    :alt: Supported versions
+    :target: https://pypi.python.org/pypi/django-dogstatsd
+
+.. |supported-implementations| image:: https://img.shields.io/pypi/implementation/django-dogstatsd.svg
+    :alt: Supported implementations
+    :target: https://pypi.python.org/pypi/django-dogstatsd
+
+.. |scrutinizer| image:: https://img.shields.io/scrutinizer/g/techdragon/django-dogstatsd/master.svg
+    :alt: Scrutinizer Status
+    :target: https://scrutinizer-ci.com/g/techdragon/django-dogstatsd/
+
+
+.. end-badges
+
+Django support for DataDog StatsD metrics.
+
+* Free software: BSD license
+
+Installation
 ============
 
-`django_statsd` is a middleware that uses `python-statsd` to log query
-and view durations to statsd.
+::
 
-* Documentation
-    - http://django-stats.readthedocs.org/en/latest/
-* Source
-    - https://github.com/WoLpH/django-statsd
-* Bug reports 
-    - https://github.com/WoLpH/django-statsd/issues
-* Package homepage
-    - https://pypi.python.org/pypi/django-statsd
-* Python Statsd
-    - https://github.com/WoLpH/python-statsd
-* Graphite
-    - http://graphite.wikidot.com
-* Statsd 
-    - code: https://github.com/etsy/statsd
-    - blog post: http://codeascraft.etsy.com/2011/02/15/measure-anything-measure-everything/
+    pip install django-dogstatsd
 
+Documentation
+=============
 
-Install
-=======
+https://django-dogstatsd.readthedocs.io/
 
-To install simply execute `python setup.py install`.
-If you want to run the tests first, run `python setup.py test`
+Development
+===========
 
+To run the all tests run::
 
-Usage
-=====
+    tox
 
-To install, add the following to your ``settings.py``:
+Note, to combine the coverage data from all the tox environments run:
 
-1. ``django_statsd`` to the ``INSTALLED_APPS`` setting.
-2. ``django_statsd.middleware.StatsdMiddleware`` to the **top** of your 
-    ``MIDDLEWARE_CLASSES``
-3. ``django_statsd.middleware.StatsdMiddlewareTimer`` to the **bottom** of your 
-    ``MIDDLEWARE_CLASSES``
+.. list-table::
+    :widths: 10 90
+    :stub-columns: 1
 
-Advanced Usage
---------------
+    - - Windows
+      - ::
 
-    >>> def some_view(request):
-    ...     with request.timings('something_to_time'):
-    ...         # do something here
-    ...         pass
-    >>>    
-    >>> def some_view(request):
-    ...     request.timings.start('something_to_time')
-    ...     # do something here
-    ...     request.timings.stop('something_to_time')
+            set PYTEST_ADDOPTS=--cov-append
+            tox
 
+    - - Other
+      - ::
+
+            PYTEST_ADDOPTS=--cov-append tox

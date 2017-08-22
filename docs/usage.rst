@@ -1,3 +1,7 @@
+=====
+Usage
+=====
 
-.. include :: ../README.rst
+To use Django DogStatsD in a project::
 
+	import django_dogstatsd
